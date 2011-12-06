@@ -1,0 +1,13 @@
+name = lightflows_shortcode                                                                            
+description = A set of shortcodes for lightflows.                                                       
+package = Shortcode                                                                                              
+core = 7.x
+dependencies[] = filter
+dependencies[] = shortcode
+stylesheets[all][] = /css/lightflows_shortcode.css
+; Information added by drupal.org packaging script on 2011-11-24
+version = "7.x-2.x-dev"
+core = "7.x"
+project = "shortcode"
+datestamp = "1322138161"
+

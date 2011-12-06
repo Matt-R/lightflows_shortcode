@@ -1,0 +1,711 @@
+<?php
+
+/**
+* Implementation of hook_shortcode_info().
+* Using same formatting as hook_filter_info()
+*/
+function lightflows_shortcode_shortcode_info() {
+  $shortcodes['quote'] = array(
+    'title' => t('Quote'), 
+    'description' => t('Replace a given text formatted like a quote.'), 
+    'process callback' => 'lightflows_shortcode_shortcode_quote', 
+    //'settings callback' => '_shortcode_settings_form', TODO
+    'attributes callback' => "lightflows_shortcode_quote_attributes",
+    'tips callback' => 'lightflows_shortcode_shortcode_quote_tip',
+    'default settings' => array(),
+  );
+  $shortcodes['img'] = array(
+    'title' => t('Image'), 
+    'description' => t('Show a image.'), 
+    'process callback' => 'lightflows_shortcode_shortcode_img', 
+    //'settings callback' => '_shortcode_settings_form', TODO
+    'tips callback' => 'lightflows_shortcode_shortcode_img_tip',
+    'default settings' => array(),
+  );
+  $shortcodes['highlight'] = array(
+    'title' => t('Highlight'), 
+    'description' => t('Insert a span around the text with highlight css class.'), 
+    'process callback' => 'lightflows_shortcode_shortcode_highlight', 
+    //'settings callback' => '_shortcode_settings_form', TODO
+    'tips callback' => 'lightflows_shortcode_shortcode_highlight_tip',
+    'default settings' => array(),
+  );
+    $shortcodes['button'] = array(
+    'title' => t('Button'), 
+    'description' => t('Insert a link formatted like a button.'), 
+    'process callback' => 'lightflows_shortcode_shortcode_button', 
+    //'settings callback' => '_shortcode_settings_form', TODO
+    'tips callback' => 'lightflows_shortcode_shortcode_button_tip',
+    'default settings' => array(),
+  );
+  $shortcodes['dropcap'] = array(
+    'title' => t('Dropcap'), 
+    'description' => t('Replace a given text formatted like a dropcap.'), 
+    'process callback' => 'lightflows_shortcode_shortcode_dropcap', 
+    //'settings callback' => '_shortcode_settings_form', TODO
+    'tips callback' => 'lightflows_shortcode_shortcode_dropcap_tip',
+    'default settings' => array(),
+  );
+  $shortcodes['item'] = array(
+    'title' => t('Item'), 
+    'description' => t('Insert div or span around the text with some css classes.'), 
+    'process callback' => 'lightflows_shortcode_shortcode_item', 
+    //'settings callback' => '_shortcode_settings_form', TODO
+    'tips callback' => 'lightflows_shortcode_shortcode_item_tip',
+    'default settings' => array(),
+  );
+  $shortcodes['clear'] = array(
+    'title' => t('Clear'), 
+    'description' => t('Insert a clearer div for a proper layout.'), 
+    'process callback' => 'lightflows_shortcode_shortcode_clear', 
+    //'settings callback' => '_shortcode_settings_form', TODO
+    'tips callback' => 'lightflows_shortcode_shortcode_clear_tip',
+    'default settings' => array(),
+  );
+  $shortcodes['link'] = array(
+    'title' => t('Link'), 
+    'description' => t('Makes an aliased link to the given path.'), 
+    'process callback' => 'lightflows_shortcode_shortcode_link',
+    //'settings callback' => '_shortcode_settings_form', TODO
+    'tips callback' => 'lightflows_shortcode_shortcode_link_tip',
+    'default settings' => array(),
+  );
+  $shortcodes['test'] = array(
+    'title' => t('Test'), 
+    'description' => t('This is a test shortcode.'), 
+    'process callback' => 'lightflows_shortcode_shortcode_test',
+    //'settings callback' => '_shortcode_settings_form', TODO
+    'tips callback' => 'lightflows_shortcode_shortcode_test_tip',
+    'default settings' => array(),
+  );
+  $shortcodes['one_third'] = array(
+    'title' => t('One Third'), 
+    'description' => t('Makes a 1/3 width column.'), 
+    'process callback' => 'lightflows_shortcode_shortcode_one_third',
+    //'settings callback' => '_shortcode_settings_form', TODO
+    'tips callback' => 'lightflows_shortcode_shortcode_one_third_tip',
+    'default settings' => array(),
+  );
+   $shortcodes['two_third'] = array(
+    'title' => t('Two Thirds'), 
+    'description' => t('Makes a 2/3 width column.'), 
+    'process callback' => 'lightflows_shortcode_shortcode_two_third',
+    //'settings callback' => '_shortcode_settings_form', TODO
+    'tips callback' => 'lightflows_shortcode_shortcode_two_third_tip',
+    'default settings' => array(),
+  );
+  $shortcodes['one_third_last'] = array(
+    'title' => t('One Third last'), 
+    'description' => t('Makes a 1/3 last width column.'), 
+    'process callback' => 'lightflows_shortcode_shortcode_one_third_last',
+    //'settings callback' => '_shortcode_settings_form', TODO
+    'tips callback' => 'lightflows_shortcode_shortcode_one_third_last_tip',
+    'default settings' => array(),
+  );
+   $shortcodes['two_third_last'] = array(
+    'title' => t('Two Thirds Last'), 
+    'description' => t('Makes a 2/3 last width column.'), 
+    'process callback' => 'lightflows_shortcode_shortcode_two_third_last',
+    //'settings callback' => '_shortcode_settings_form', TODO
+    'tips callback' => 'lightflows_shortcode_shortcode_two_third_last_tip',
+    'default settings' => array(),
+  );
+    $shortcodes['one_fourth'] = array(
+    'title' => t('One Fourth'), 
+    'description' => t('Makes a 1/4 width column.'), 
+    'process callback' => 'lightflows_shortcode_shortcode_one_fourth',
+    //'settings callback' => '_shortcode_settings_form', TODO
+    'tips callback' => 'lightflows_shortcode_shortcode_one_fourth_tip',
+    'default settings' => array(),
+  );
+   $shortcodes['one_half'] = array(
+    'title' => t('One Half'), 
+    'description' => t('Makes a 1/2 width column.'), 
+    'process callback' => 'lightflows_shortcode_shortcode_one_half',
+    //'settings callback' => '_shortcode_settings_form', TODO
+    'tips callback' => 'lightflows_shortcode_shortcode_one_half_tip',
+    'default settings' => array(),
+  );
+  $shortcodes['one_fourth_last'] = array(
+    'title' => t('One Fourth Last'), 
+    'description' => t('Makes a 1/4th last width column.'), 
+    'process callback' => 'lightflows_shortcode_shortcode_one_fourth_last',
+    //'settings callback' => '_shortcode_settings_form', TODO
+    'tips callback' => 'lightflows_shortcode_shortcode_one_fourth_last_tip',
+    'default settings' => array(),
+  );
+   $shortcodes['one_half_last'] = array(
+    'title' => t('One Half Last'), 
+    'description' => t('Makes a 1/2 last width column.'), 
+    'process callback' => 'lightflows_shortcode_shortcode_one_half_last',
+    //'settings callback' => '_shortcode_settings_form', TODO
+    'tips callback' => 'lightflows_shortcode_shortcode_one_half_last_tip',
+    'default settings' => array(),
+  );
+  $shortcodes['code'] = array(
+    'title' => t('Code'), 
+    'description' => t('Print the code.'), 
+    'process callback' => 'lightflows_shortcode_shortcode_code',
+    //'settings callback' => '_shortcode_settings_form', TODO
+    'tips callback' => 'lightflows_shortcode_shortcode_code_tip',
+    'default settings' => array(),
+  );
+  return $shortcodes;
+}
+
+/**
+* Implementation of hook_theme().
+*/
+function lightflows_shortcode_theme() {
+  return array(
+    'shortcode_button' => array(
+      'variables' => array('link' => '#', 'text' => '', 'class' => 'button'),
+    ),
+    'shortcode_quote' => array(
+      'variables' => array('text' => '', 'author' => FALSE, 'class' => 'quote'),
+    ),
+    'shortcode_img' => array(
+      'variables' => array('src' => '', 'alt' => '', 'class' => 'img'),
+    ),
+    'shortcode_dropcap' => array(
+      'variables' => array('text' => '', 'class' => 'dropcap'),
+    ),
+    'shortcode_item' => array(
+      'variables' => array('text' => '', 'id' => '', 'class' => '', 'type' => 'div'),
+    ),
+    'shortcode_clear' => array(
+      'variables' => array('text' => '', 'id' => '', 'class' => '', 'type' => 'div'),
+    ),
+  );
+}
+
+/**
+ * Insert a span around the text with highlight css class
+ *
+ * Calling
+ * [highlight]text[/highlight]
+ *
+ *
+ * If the length empty or invalid, between 1-99, the length will be 8
+ *
+ */
+function lightflows_shortcode_shortcode_highlight($attrs, $text) {
+  extract( shortcode_attrs( array(
+      'class'  => '',
+      ), $attrs ));
+
+  $class = shortcode_add_class($class, 'highlight');
+  return '<span class="' . $class . '">' . $text . '</span>';
+}
+
+function lightflows_shortcode_shortcode_highlight_tip($format, $long) {
+  $output = '<p><strong>[highlight]text[/highlight]</strong>';
+  if ($long) {
+    $output .= ' this shortcode is used to highlight text.</p>';
+  }
+  else {
+    $output .= ' this shortcode is used to highlight text.</p>';
+  }
+  return $output;
+}
+
+function lightflows_shortcode_shortcode_test($attrs, $text) {
+  extract( shortcode_attrs( array(
+      'class'  => '',
+      ), $attrs ));
+
+  $class = shortcode_add_class($class, 'test');
+  return '<span class="' . $class . '">' . $text . '</span>';
+}
+
+function lightflows_shortcode_shortcode_test_tip($format, $long) {
+  $output = '<p><strong>[test]text[/test]</strong>';
+  if ($long) {
+    $output .= ' this shortcode is used for testing.</p>';
+  }
+  else {
+    $output .= ' this shortcode is used for testing.</p>';
+  }
+  return $output;
+}
+
+function lightflows_shortcode_shortcode_one_third($attrs, $text) {
+  extract( shortcode_attrs( array(
+      'class'  => '',
+      ), $attrs ));
+
+  $class = shortcode_add_class($class, 'column-1-3');
+  return '<div class="' . $class . '"><div class="column-inner">' . $text . '</div></div>';
+} 
+
+function lightflows_shortcode_shortcode_one_third_tip($format, $long) {
+  $output = '<p><strong>[one_third]text[/one_third]</strong>';
+  if ($long) {
+    $output .= ' this shortcode is used to create a column of 1/3 width.</p>';
+  }
+  else {
+    $output .= ' this shortcode is used to create a column of 1/3 width.</p>';
+  }
+  return $output;
+}
+
+function lightflows_shortcode_shortcode_two_third($attrs, $text) {
+  extract( shortcode_attrs( array(
+      'class'  => '',
+      ), $attrs ));
+
+  $class = shortcode_add_class($class, 'column-2-3');
+  return '<div class="' . $class . '"><div class="column-inner">' . $text . '</div></div>';
+}
+
+function lightflows_shortcode_shortcode_two_third_tip($format, $long) {
+  $output = '<p><strong>[two_third]text[/two_third]</strong>';
+   if ($long) {
+    $output .= ' this shortcode is used to create a column of 2/3 width.</p>';
+  }
+  else {
+    $output .= ' this shortcode is used to create a column of 2/3 width.</p>';
+  }
+  return $output;
+}
+
+function lightflows_shortcode_shortcode_one_third_last($attrs, $text) {
+  extract( shortcode_attrs( array(
+      'class'  => '',
+      ), $attrs ));
+
+  $class = shortcode_add_class($class, 'column-1-3');
+  return '<div class="' . $class . ' column-last"><div class="column-inner">' . $text . '</div></div>';
+} 
+
+function lightflows_shortcode_shortcode_one_third_last_tip($format, $long) {
+  $output = '<p><strong>[one_third_last]text[/one_third_last]</strong>';
+  if ($long) {
+    $output .= ' this shortcode is used to create the last column of 1/3 width.</p>';
+  }
+  else {
+    $output .= ' this shortcode is used to create the last column of 1/3 width.</p>';
+  }
+  return $output;
+}
+
+function lightflows_shortcode_shortcode_two_third_last($attrs, $text) {
+  extract( shortcode_attrs( array(
+      'class'  => '',
+      ), $attrs ));
+
+  $class = shortcode_add_class($class, 'column-2-3');
+  return '<div class="' . $class . ' column-last"><div class="column-inner">' . $text . '</div></div>';
+} 
+
+function lightflows_shortcode_shortcode_two_third_last_tip($format, $long) {
+  $output = '<p><strong>[two_third_last]text[/two_third_last]</strong>';
+  if ($long) {
+    $output .= ' this shortcode is used to create the last column of 2/3 width.</p>';
+  }
+  else {
+    $output .= ' this shortcode is used to create the last column of 2/3 width.</p>';
+  }
+  return $output;
+}
+
+//* 4 column //
+
+function lightflows_shortcode_shortcode_one_fourth($attrs, $text) {
+  extract( shortcode_attrs( array(
+      'class'  => '',
+      ), $attrs ));
+
+  $class = shortcode_add_class($class, 'column-1-4');
+  return '<div class="' . $class . '"><div class="column-inner">' . $text . '</div></div>';
+} 
+
+function lightflows_shortcode_shortcode_one_fourth_tip($format, $long) {
+  $output = '<p><strong>[one_fourth]text[/one_fourth]</strong>';
+  if ($long) {
+    $output .= ' this shortcode is used to create a column of 1/4 width.</p>';
+  }
+  else {
+    $output .= ' this shortcode is used to create a column of 1/4 width.</p>';
+  }
+  return $output;
+}
+
+function lightflows_shortcode_shortcode_one_fourth_last($attrs, $text) {
+  extract( shortcode_attrs( array(
+      'class'  => '',
+      ), $attrs ));
+
+  $class = shortcode_add_class($class, 'column-1-4');
+  return '<div class="' . $class . ' column-last"><div class="column-inner">' . $text . '</div></div>';
+} 
+
+function lightflows_shortcode_shortcode_one_fourth_last_tip($format, $long) {
+  $output = '<p><strong>[one_fourth_last]text[/one_fourth_last]</strong>';
+  if ($long) {
+    $output .= ' this shortcode is used to create the last column of 1/4 width.</p>';
+  }
+  else {
+    $output .= ' this shortcode is used to create the last column of 1/4 width.</p>';
+  }
+  return $output;
+}
+
+function lightflows_shortcode_shortcode_one_half($attrs, $text) {
+  extract( shortcode_attrs( array(
+      'class'  => '',
+      ), $attrs ));
+
+  $class = shortcode_add_class($class, 'column-1-2');
+  return '<div class="' . $class . '"><div class="column-inner">' . $text . '</div></div>';
+}
+
+function lightflows_shortcode_shortcode_one_half_tip($format, $long) {
+  $output = '<p><strong>[one_half]text[/one_half]</strong>';
+  if ($long) {
+    $output .= ' this shortcode is used to create a column of 1/2 width.</p>';
+  }
+  else {
+    $output .= ' this shortcode is used to create a column of 1/2 width.</p>';
+  }
+  return $output;
+}
+
+function lightflows_shortcode_shortcode_one_half_last($attrs, $text) {
+  extract( shortcode_attrs( array(
+      'class'  => '',
+      ), $attrs ));
+
+  $class = shortcode_add_class($class, 'column-1-2');
+  return '<div class="' . $class . ' column-last"><div class="column-inner">' . $text . '</div></div>';
+} 
+
+function lightflows_shortcode_shortcode_one_half_last_tip($format, $long) {
+  $output = '<p><strong>[one_half_last]text[/one_half_last]</strong>';
+  if ($long) {
+    $output .= ' this shortcode is used to create the last column of 1/2 width.</p>';
+  }
+  else {
+    $output .= ' this shortcode is used to create the last column of 1/2 width.</p>';
+  }
+  return $output;
+}
+
+// end 4 column //
+
+// start code //
+
+function lightflows_shortcode_shortcode_code($attrs,$text)
+{
+		$lines = explode("\n", $text);
+
+		if (trim($lines[0]) == '') {
+			array_shift($lines);
+		}
+		$n = count($lines);
+
+		if (trim($lines[$n - 1]) == '') {
+			array_pop($lines);
+			--$n;
+		}
+
+		$return = '<div class="code-container"><div class="code-lines">';
+		for ($i = 1; $i <= $n; ++$i) {
+			$return .='<span>' . ($i < 10 ? '0' : '') . $i . '</span>';
+		}
+
+		$return .= '</div><p><code>';
+		for ($i = 0; $i < $n; ++$i) {
+			$return.='<span>' . trim($lines[$i]) . '</span>';
+		}
+
+		$return .= '</code></p></div>';
+
+		return $return;
+
+}
+
+function lightflows_shortcode_shortcode_code_tip($format, $long) {
+  $output = '<p><strong>[code]text[/code]</strong>';
+   if ($long) {
+    $output .= ' this shortcode is used to output code.</p>';
+  }
+  else {
+    $output .= ' this shortcode is used to output code.</p>';
+  }
+  return $output;
+}
+
+//end code//
+
+function lightflows_shortcode_shortcode_button($attrs, $text) {
+  extract(shortcode_attrs( array(
+      'title' => 'title default',
+      'class' => 'button',
+      'url' =>  '',
+      'path' =>  '/',
+      // ...etc
+      ), $attrs ));
+
+$class = shortcode_add_class($class, 'button');
+
+  if ($url) {
+   $path = $url;
+  }
+  $path = url($path);
+  return theme('shortcode_button', array('path' => $path, 'text' => $text, 'class' => $class));
+}
+
+function lightflows_shortcode_shortcode_button_tip($format, $long) {
+  $output = '<p><strong>[button path="path"]text[/button]</strong>';
+  if ($long) {
+    $output .= ' insert a link formatted like a button. Use url parameter for the link.</p>';
+  }
+  else {
+    $output .= ' insert a link formatted like a button. Use url parameter for the link.</p>';
+  }
+  return $output;
+}
+
+function theme_shortcode_button($vars) {
+  return '<a href="' . $vars['path'] . '" class="' . $vars['class'] . '"><span>' . $vars['text'] . '</span></a>';
+}
+
+
+function lightflows_shortcode_shortcode_dropcap($attrs, $text) {
+  extract(shortcode_attrs( array(
+      'class' => 'dropcap',
+      // ...etc
+      ), $attrs ));
+
+  $class = shortcode_add_class($class, 'dropcap');
+  return theme('shortcode_dropcap', array('text' => $text, 'class' => $class));
+}
+
+/**
+ * Theme hook for dropcap
+ * @param $text
+ * @param $class
+ */
+function theme_shortcode_dropcap($vars) {
+  return '<span class="' . $vars['class'] . '">' . $vars['text'] . '</span>';
+}
+
+function lightflows_shortcode_shortcode_dropcap_tip($format, $long) {
+  $output = '<p><strong>[dropcap]text[/dropcap]</strong>';
+  if ($long) {
+    $output .= ' replace a given text formatted like a dropcap.</p>';
+  }
+  else {
+    $output .= ' replace a given text formatted like a dropcap.</p>';
+  }
+
+  return $output;
+}
+
+function lightflows_shortcode_quote_attributes($form, &$form_state) {
+  $form['class'] = array(
+    '#title' => t('class'), 
+    '#type' => 'textfield', 
+  );
+    
+  return $form;
+}
+
+function lightflows_shortcode_quote_options_submit($form, &$form_state) {
+}
+
+/**
+ *
+ * Replace a given text formatted like a quote.
+ * @param $attrs
+ * @param $text
+ */
+function lightflows_shortcode_shortcode_quote($attrs, $text) {
+  extract(shortcode_attrs(array(
+      'class' => 'quote',
+      'author' => '',
+      ), $attrs));
+
+  $class = shortcode_add_class($class, 'quote');
+
+  return theme('shortcode_quote', array('text' => $text, 'author' => $author, 'class' => $class));
+}
+
+function theme_shortcode_quote($vars) {
+  $output = '';
+
+  if(!empty($vars['author'])) {
+    // Add author
+    $output = '<span class="quote-author">'. t('%name wrote:', array('%name' => $vars['author'])) .'</span>';
+  }
+  $output .= $vars['text'];
+
+  return '<span class="' . $vars['class'] . '">' . $output . '</span>';
+}
+
+function lightflows_shortcode_shortcode_quote_tip($format, $long) {
+  $output = '<p><strong>[quote (author="author name")]text[/quote]</strong>';
+     if ($long) {
+    $output .= ' this shortcode is used to create a quote.</p>';
+  }
+  else {
+    $output .= ' this shortcode is used to create a quote.</p>';
+  }
+
+  return $output;
+}
+
+function lightflows_shortcode_shortcode_img($attrs, $text) {
+  extract(shortcode_attrs(array(
+      'class' => 'img',
+      'alt' => '',
+      ), $attrs));
+
+  $class = shortcode_add_class($class, 'img');
+
+  return theme('shortcode_img', array('src' => $text, 'alt' => $alt, 'class' => $class));
+}
+
+function theme_shortcode_img($vars) {
+  $alt = (!empty($vars['alt'])) ? ' alt="'. $vars['alt'] .'" ' : '';
+  
+  return '<img src="'. url($vars['src']) .'" class="' . $vars['class'] . '" alt="' . $alt . '"/>';
+}
+
+function lightflows_shortcode_shortcode_img_tip($format, $long) {
+  $output = '<p><strong>[img (alt="alt text")]image url[/img]</strong>';
+  $output .= ' inserts an image based on the given url.</p>';
+
+  return $output;
+}
+
+function lightflows_shortcode_shortcode_item($attrs, $text) {
+  extract(shortcode_attrs( array(
+      'class' => '',
+      'style' => '',
+      'id' => '',
+      'type' => 'div',
+      // ...etc
+      ), $attrs ));
+
+  switch ($type) {
+    case 's':
+    case 'span':
+      $type = 'span';
+    break;
+
+    default:
+      $type = 'div';
+    break;
+  }
+
+  return theme('shortcode_item', array('text' => $text, 'id' => $id, 'class' => $class, 'type' => $type, 'style' => $style));
+}
+
+function lightflows_shortcode_shortcode_item_tip($format, $long) {
+  $output = '<p><strong>[item (type=div,d,span,s)]text[/item]</strong>';
+  if ($long) {
+    $output .= ' Insert a html item (div or span) around the given text.</p>';
+  }
+  else {
+    $output .= ' Insert a html item (div or span) around the given text.</p>';
+  }
+  return $output;
+}
+
+function theme_shortcode_item($vars) {
+  $id = empty($vars['id']) ? '' : ' id="' . $vars['id'] . '"';
+  $class = empty($vars['class']) ? '' : ' class="' . $vars['class'] . '"';
+  $style = empty($vars['style']) ? '' : ' style="' . $vars['style'] . '"';
+
+  return '<' . $vars['type'] . $id . $class . $style . '>' . $vars['text'] . '</' . $vars['type'] . '>';
+}
+
+function lightflows_shortcode_shortcode_clear($attrs, $text) {
+  extract(shortcode_attrs( array(
+      'class' => '',
+      'style' => '',
+      'id' => '',
+      'type' => 'div',
+      // ...etc
+      ), $attrs ));
+
+  $class = shortcode_add_class($class, 'clear-block');
+
+  switch ($type) {
+    case 's':
+    case 'span':
+      $type = 'span';
+    break;
+
+    default:
+      $type = 'div';
+    break;
+  }
+
+  return theme('shortcode_clear', array('text' => $text, 'id' => $id, 'class' => $class, 'type' => $type, 'style' => $style));
+}
+
+// TODO: fill it
+function lightflows_shortcode_shortcode_clear_tip($format, $long) {
+  $output = '<p><strong>[clear type=div,d,span,s]text[/clear]</strong>';
+  if ($long) {
+    $output .= ' insert a html item (div or span) around the given text.</p>';
+  }
+  else {
+    $output .= ' insert a html item (div or span) around the given text.</p>';
+  }
+  return $output;
+}
+
+function theme_shortcode_clear($vars) {
+  $id = empty($vars['id']) ? '' : ' id="' . $vars['id'] . '"';
+  $class = empty($vars['class']) ? '' : ' class="' . $vars['class'] . '"';
+  $style = empty($vars['style']) ? '' : ' style="' . $vars['style'] . '"';
+
+  return '<' . $vars['type'] . $id . $class . $style . '>' . $vars['text'] . '</' . $vars['type'] . '>';
+}
+
+/*
+ * Create aliased link
+ *
+ * param $text = the linked text
+ * attr[path] = the path we need aliaded
+ *
+ */
+function lightflows_shortcode_shortcode_link($attrs, $text) {
+  extract(shortcode_attrs( array(
+      'path' => '<front>',
+      'title' => '',
+      // ...etc
+      ), $attrs ));
+
+  $path = url($path);
+  if ($text) {
+    $class = empty($class) ? '' : ' class="' . $class . '"';
+    $style = empty($style) ? '' : ' style="' . $style . '"';
+    $id = empty($id) ? '' : ' id="' . $id . '"';
+    if ($title == '<none>') {
+      $title = '';
+    }
+    else {
+      $title = empty($title) ? check_plain($text) : check_plain($title);
+      $title = ' title="' . $title . '"';
+    }
+    return '<a href="' . $path . '"' . $id . $class . $style . $title . '>' . $text . '</a>';
+  }
+  return $path;
+}
+
+function lightflows_shortcode_shortcode_link_tip($format, $long) {
+  $output = '<p><strong>[link path="the drupal path"]text[/link]</strong>';
+  if ($long) {
+    $output .= ' inserts an aliased drupal path around the text.</p>';
+  }
+  else {
+    $output .= ' inserts an aliased drupal path around the text.</p>';
+  }
+
+  return $output;
+}

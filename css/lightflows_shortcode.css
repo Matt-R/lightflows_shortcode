@@ -1,0 +1,142 @@
+/* Blockquotes */
+
+.quote {
+	display:block;
+  background: #f4f4f4 url(../design_packs/blue/images/blockquote-quote.png) no-repeat 8px 8px;
+  color: #6a6a6a;
+  padding:10px;
+	text-indent: 22px;
+	font: italic 14px georgia;
+}
+
+/* Highlight*/
+
+.highlight {
+	background-color: yellow;
+}
+
+/* Dropcap*/
+
+.dropcap { 
+	display:block; 
+	float:left; 
+	font-size:38px; 
+	line-height:38px; 	
+	vertical-align:baseline; 
+	padding-right:5px; 
+}
+
+a.button
+{
+	font-size: 20px;
+	background: #000 repeat-x 0 -1px;
+	color: #fff !important;
+	font-family: Arial, Helvetica, Geneva, sans-serif;
+	text-transform: uppercase;
+	border: 1px solid #9f4320;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	text-shadow: 0px 1px 1px #e10000;
+	padding: 10px 20px;
+	margin: 10px;
+}
+
+/* Test Shortcode*/
+
+.test {
+	background-color: red;
+}
+
+/* Columns */
+
+.column-1-2, .column-1-3, .column-2-3, .column-1-4, .column-3-4 {
+    line-height:20px;
+    margin: 5px 20px 0 0;
+    float:left;
+}
+
+.column-1-2 { width: 460px; }
+
+.column-1-4 { width:220px; }
+
+.column-3-4 { width:700px; }
+
+.column-last { margin-right:0; }
+
+.column-1-3 { width:300px; }
+
+.column-2-3 { width:620px; }
+
+.column-1-2 .column-1-4, .column-2-3 .column-1-3, .column-3-4 .column-1-4, .column-3-4 .column-1-2, .column-1-2 .column-1-4 p, .column-2-3 .column-1-3 p, .column-3-4 .column-1-4 p, .column-3-4 .column-1-2 p {
+	margin-top:0
+}
+
+.column-1-2 .column-1-4, .column-2-3 .column-1-3,.column-3-4 .column-1-4, .column-3-4 .column-1-2 {
+	margin-bottom:0px !important;
+}
+
+/* End Columns */
+
+/* Code Container */
+
+div.code-container {
+	margin: 0 0 20px 0;
+	background:#fafafa;
+	border:1px solid #d7d7d7;
+	overflow:hidden;
+	position:relative;
+	font-family: "Courier New", Courier, Verdana;
+	line-height: 12px;
+	font-size:15px
+}
+
+code {
+	overflow:hidden;
+	white-space:nowrap;
+	display:block;
+	margin:0 !important;
+}
+
+code span {
+	display:block;
+	border-top:1px solid #e7e7e7;
+	background:#f7f7f7;
+	padding: 8px 0 9px 35px;
+}
+
+.code-lines {
+	text-align:right;
+	float:left;
+	background:#efefef;
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:2;
+}
+
+.code-container p {
+	margin:0 !important;
+	padding:0 !important;
+	line-height:inherit;
+}
+
+.code-lines span {
+	display:block;
+	border-top:1px solid #e7e7e7;
+	line-height:14px;
+	padding: 8px 6px 7px 6px;
+}
+
+code span:nth-child(2n) {
+	background: #fbfbfb;
+}
+
+code span:first-child, .code-lines span:first-child {
+	border-top:0;
+}
+/*End Code Container */
+
+
+
+
